@@ -1,0 +1,193 @@
+/* Planewise-like structure but with Hive colors */
+
+
+/* Center the page */
+.login-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #fff; /* Change to white */
+  }
+  
+  /* Keep the card white (or slightly off-white) if you want a card effect */
+  .login-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    /* You can keep a subtle shadow to emphasize the "card" look */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    max-width: 450px;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+  }
+  
+  /* Align logo at the top */
+  .login-logo {
+    width: 90px; /* Adjust size for smaller screens */
+    margin-bottom: 20px;
+    border-radius: 10%;
+  }
+  
+  /* Title styling */
+  .login-title {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  /* Form group styling */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 450;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  /* Password input wrapper */
+  .password-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+  }
+  
+  /* Eye icon for toggling password visibility */
+  .password-toggle-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #aaa;
+  }
+  
+  .password-toggle-icon:hover {
+    color: #333;
+  }
+  
+  /* Button group */
+  .button-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sign-in-button {
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #ffa500;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .sign-in-button:hover {
+    background-color: #e69500;
+  }
+  
+  /* Error alert styling */
+  .alert {
+    padding: 0.25rem;
+    margin-bottom: 0.6rem;
+    border-radius: 6px;
+    text-align: center;
+  }
+  
+  .error-alert {
+    color: #d8000c;
+  }
+  
+  /* Sign-up and Forgot Password */
+  .signup-link {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .signup-link-button {
+    background: none;
+    border: none;
+    color: #ffa500;
+    cursor: pointer;
+  }
+  
+  .signup-link-button:hover {
+    text-decoration: underline;
+  }
+  
+  .forgot-password {
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  
+  .forgot-password-button {
+    background: none;
+    border: none;
+    color: #ffa500;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .forgot-password-button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    .login-card {
+      padding: 1.5rem; /* Reduce padding on smaller screens */
+      width: 90%; /* Make the form take 90% of the screen width */
+    }
+  
+    .login-logo {
+      width: 60px; /* Adjust logo size for smaller screens */
+    }
+  
+    .login-title {
+      font-size: 20px; /* Adjust title size for smaller screens */
+    }
+  
+    .sign-in-button {
+      padding: 0.5rem; /* Slightly reduce padding for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .login-card {
+      padding: 1rem; /* Further reduce padding on very small screens */
+      width: 95%; /* Take more of the screen width on smaller devices */
+    }
+  
+    .login-logo {
+      width: 50px; /* Smaller logo for very small screens */
+    }
+  
+    .login-title {
+      font-size: 18px; /* Smaller title size for very small screens */
+    }
+  
+    .sign-in-button {
+      padding: 0.4rem; /* Further reduce padding for smaller screens */
+    }
+  }
+  
