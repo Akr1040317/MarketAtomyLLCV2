@@ -9,7 +9,14 @@ import {
 import { setDoc, doc, serverTimestamp, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "./LoginPage.css"; // Reusing the same CSS as LoginPage
+
+// If you want the same top/bottom logos as the login page:
+import companyLogo from "./assets/companyLogo.png";
+import poweredBy from "./assets/poweredBy.png";
+import googleLogo from "./assets/google.png";
+
+// IMPORTANT: Use the same CSS as your LoginPage
+import "./LoginPage.css";
 
 export default function SignupPage() {
   // Form state for email/password sign-up
@@ -43,7 +50,6 @@ export default function SignupPage() {
       setIsUsernameAvailable(true);
       return;
     }
-
     try {
       const usernameDoc = await getDoc(doc(db, "usernames", enteredUsername));
       // If the doc exists in "usernames", that means it's taken
@@ -76,18 +82,16 @@ export default function SignupPage() {
         lastName,
         email,
         username,
-        verified: false, // Because they haven't confirmed email
+        verified: false, // Because they haven't confirmed email yet
         signupMethod: "email/password",
         role: "tier1",
         createdAt: serverTimestamp(),
         lastLoggedOn: null,
         lastLoggedOff: null,
       };
-
       await setDoc(doc(db, "users", uid), userDocData);
 
-      // 4. Reserve the username in a "usernames" collection, if you want
-      //    (So no one else can take it.)
+      // 4. Reserve the username in a "usernames" collection
       await setDoc(doc(db, "usernames", username), {
         username,
         userId: uid,
@@ -111,7 +115,7 @@ export default function SignupPage() {
       const userDocSnap = await getDoc(userDocRef);
 
       if (!userDocSnap.exists()) {
-        // Attempt to parse first/last name from displayName if available
+        // Attempt to parse first/last name
         let parsedFirstName = "";
         let parsedLastName = "";
         if (user.displayName) {
@@ -120,14 +124,12 @@ export default function SignupPage() {
           parsedLastName = nameParts.slice(1).join(" ");
         }
 
-        // You can leave `username` blank or default it to something:
-        // e.g. user.email or user.uid. Or you can open a "Complete Profile" page.
         await setDoc(userDocRef, {
           userId: user.uid,
           firstName: parsedFirstName,
           lastName: parsedLastName,
           email: user.email,
-          username: "", // or user.email, or prompt them later
+          username: "", // or user.email
           verified: user.emailVerified, // Typically true for Google
           signupMethod: "google",
           role: "tier1",
@@ -137,8 +139,7 @@ export default function SignupPage() {
         });
       }
 
-      // The user is now signed in with Google
-      // If you want a "welcome" or "dashboard" redirect:
+      // The user is now signed in
       navigate("/dashboard");
     } catch (error) {
       console.error("Error signing up with Google:", error);
@@ -166,38 +167,51 @@ export default function SignupPage() {
     doPasswordsMatch;
 
   return (
-    <div className="login-page-container">
-      <img
-        src="/IconResized.png"
-        alt="Business Health Assessment Logo"
-        className="login-logo"
-      />
-      <h2 className="login-title">Sign up for Business Health Assessment</h2>
+    <div className="login-dark-container">
+      {/* If you want the same header logo as LoginPage */}
+      <div className="login-header">
+        <img
+          src={companyLogo}
+          alt="Company Logo"
+          className="company-logo"
+        />
+      </div>
 
-      <div className="login-card">
-        {/* -- Email/Password Form Fields -- */}
-        <div className="form-group">
-          <label>First Name</label>
-          <input
+      <div className="login-card-dark">
+        <h3 className="company-title" style={{ textAlign: "center", marginBottom: "1rem" }}>
+          Sign up for Business Health Check
+        </h3>
+
+        {/* First Name & Last Name in One Row */}
+    <div className="form-row-dark">
+    {/* First Name */}
+        <div className="form-group-dark">
+            <label>First Name</label>
+            <input
             type="text"
             placeholder="Enter your first name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-          />
+            />
         </div>
 
-        <div className="form-group">
-          <label>Last Name</label>
-          <input
+        {/* Last Name */}
+        <div className="form-group-dark">
+            <label>Last Name</label>
+            <input
             type="text"
             placeholder="Enter your last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-          />
+            />
         </div>
+    </div>
 
-        <div className="form-group">
-          <label>Email</label>
+
+
+    <div className="form-row-dark">
+        <div className="form-group-dark">
+        <label>Email</label>
           <input
             type="email"
             placeholder="name@example.com"
@@ -206,8 +220,9 @@ export default function SignupPage() {
           />
         </div>
 
-        <div className="form-group">
-          <label>Username</label>
+        {/* Last Name */}
+        <div className="form-group-dark">
+        <label>Username</label>
           <input
             type="text"
             placeholder="Enter a username"
@@ -218,13 +233,18 @@ export default function SignupPage() {
             }}
           />
           {!isUsernameAvailable && (
-            <span className="error-message">Username is already taken</span>
+            <span className="error-message" style={{ color: "#fecaca" }}>
+              Username is already taken
+            </span>
           )}
         </div>
+    </div>
 
-        <div className="form-group password-group">
-          <label>Password</label>
-          <div className="password-wrapper">
+    <div className="form-row-dark">
+    {/* First Name */}
+        <div className="form-group-dark">
+        <label>Password</label>
+          <div className="password-wrapper-dark">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
@@ -232,23 +252,24 @@ export default function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <span
-              className="password-toggle-icon"
+              className="password-toggle-icon-dark"
               onClick={togglePasswordVisibility}
             >
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
           {!isPasswordValid && password.length > 0 && (
-            <span className="error-message">
+            <span className="error-message" style={{ color: "#fecaca" }}>
               Password must be 8-15 characters and include uppercase, lowercase,
               a number, and a special character.
             </span>
           )}
         </div>
 
-        <div className="form-group password-group">
-          <label>Confirm Password</label>
-          <div className="password-wrapper">
+        {/* Last Name */}
+        <div className="form-group-dark">
+        <label>Confirm Password</label>
+          <div className="password-wrapper-dark">
             <input
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm your password"
@@ -256,7 +277,7 @@ export default function SignupPage() {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
             <span
-              className="password-toggle-icon"
+              className="password-toggle-icon-dark"
               onClick={toggleConfirmPasswordVisibility}
             >
               {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
@@ -264,52 +285,70 @@ export default function SignupPage() {
           </div>
           {password && confirmPassword && (
             <span
-              className={`password-match-indicator ${
-                doPasswordsMatch ? "match" : "no-match"
-              }`}
+              style={{
+                color: doPasswordsMatch ? "#bbf7d0" : "#fecaca",
+                fontSize: "0.9rem",
+                marginTop: "0.25rem",
+                display: "inline-block",
+              }}
             >
-              {doPasswordsMatch ? "Passwords match" : "Passwords do not match"}
+              {doPasswordsMatch
+                ? "Passwords match"
+                : "Passwords do not match"}
             </span>
           )}
         </div>
+    </div>
 
+        {/* Registration Success Alert */}
         {showRegistrationSuccessAlert && (
-          <div className="alert success-alert">
+          <div className="alert-dark success-alert-dark" style={{ marginTop: "1rem" }}>
             Registration successful! We’ve sent you a verification email.
           </div>
         )}
 
-        {/* -- Email/Password Sign Up Button -- */}
-        <div className="button-group" style={{ flexDirection: "column", gap: "0.5rem" }}>
-          <button
-            className="sign-in-button"
-            onClick={handleSignupEmailPassword}
-            disabled={!canSubmit}
-          >
-            Sign Up with Email
-          </button>
+        {/* Sign Up Buttons */}
+        <button
+          className="sign-in-button-dark"
+          onClick={handleSignupEmailPassword}
+          disabled={!canSubmit}
+          style={{ marginBottom: "1rem" }}
+        >
+          Sign Up with Email
+        </button>
 
-          {/* -- Google Sign Up Button -- */}
-          <button
-            className="sign-in-button"
-            style={{ backgroundColor: "#4285F4" }}
-            onClick={handleGoogleSignUp}
-          >
-            Sign Up with Google
-          </button>
+        <div className="divider-row">
+          <hr className="divider-line" />
+          <span className="divider-text">or sign up with</span>
+          <hr className="divider-line" />
         </div>
 
-        {/* Already have an account? */}
-        <div className="signup-link">
-          <span>Already have an account? </span>
+        <button className="google-button" onClick={handleGoogleSignUp}>
+          <img src={googleLogo} alt="Google Logo" className="google-logo" />
+          Sign Up with Google
+        </button>
+
+        <p className="signup-row" style={{ marginTop: "1rem" }}>
+          Already have an account?
           <button
             onClick={() => navigate("/login")}
-            className="signup-link-button"
+            className="signup-link-dark"
           >
             Sign In
           </button>
-        </div>
+        </p>
       </div>
+
+      {/* Footer (optional) */}
+      <div className="powered-by-tailkit">
+            <span className="powered-by-text">Powered by</span>
+            <img
+                src={poweredBy}
+                alt="Powered By Something"
+                className="powered-by-logo"
+            />
+        </div>
+
     </div>
   );
 }

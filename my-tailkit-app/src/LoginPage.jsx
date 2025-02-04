@@ -123,7 +123,11 @@ export default function LoginPage() {
         />
       </div>
 
+        
       <div className="login-card-dark">
+      <h3 className="company-title" style={{ textAlign: "center", marginBottom: "1rem" }}>
+          Login to BHC
+        </h3>
         {/* Email */}
         <div className="form-group-dark">
           <label>Email</label>
@@ -191,12 +195,13 @@ export default function LoginPage() {
       </div>
 
       <div className="powered-by-tailkit">
-        <img
-          src={poweredBy}
-          alt="Powered By Something"
-          className="powered-by-logo"
-        />
-      </div>
+            <span className="powered-by-text">Powered by</span>
+            <img
+                src={poweredBy}
+                alt="Powered By Something"
+                className="powered-by-logo"
+            />
+        </div>
     </div>
   );
 }
