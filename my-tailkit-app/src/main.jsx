@@ -11,12 +11,13 @@ createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<LoginPage />} />  {/* Set login as default */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* Add more routes as needed */}
+        <Route path="/home" element={<App />} />  {/* Move App to a different route */}
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
+
