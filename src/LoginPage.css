@@ -62,6 +62,7 @@
         flex-direction: column; /* Stack fields on smaller screens */
         gap: 0.5rem;
       }
+
     }
     
   .form-group-dark {
@@ -101,7 +102,7 @@
   }
   
   .password-wrapper-dark input {
-    padding-right: 7rem; /* Room for bigger icon */
+    padding-right: 5rem; /* Room for bigger icon */
   }
   
   .password-toggle-icon-dark {

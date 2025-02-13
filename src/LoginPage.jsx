@@ -176,7 +176,7 @@ export default function LoginPage() {
         {/* Google Button */}
         <button className="sign-in-button google-button" onClick={handleGoogleSignIn}>
             <img src={googleLogo} alt="Google Logo" className="google-logo" />
-            Sign Up with Google
+            Sign in with Google
           </button>
 
         {/* Sign up */}

@@ -101,7 +101,7 @@
 }
 
 .password-wrapper-dark input {
-  padding-right: 11rem; /* Room for bigger icon */
+  padding-right: 1rem;
 }
 
 .password-toggle-icon-dark {

@@ -1,0 +1,262 @@
+  
+
+  /* General container for the dashboard */
+  .dashboard-container {
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+      background-color: #191919; /* Set the background for everything else */
+      position: relative;
+      color: white; /* Set default text color to white */
+      border: none; /* Remove any borders around the container */
+  }
+
+  /* Sidebar */
+  .sidebar {
+      width: 250px;
+      background-color: #202020 !important; /* Sidebar background color */
+      border-right: none !important; /* Explicitly remove the right border */
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      transition: width 0.3s ease;
+      z-index: 10;
+      color: white; /* Sidebar text color */
+  }
+
+  .sidebar.collapsed {
+      width: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: width 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  /* Sidebar header for logo and title */
+  .sidebar-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      background-color: #202020 !important; /* Match the background of the sidebar */
+  }
+
+  .gathr-logo {
+      width: 40px;
+      margin-right: 10px;
+  }
+
+  .sidebar a {
+      display: flex;
+      align-items: center;
+      color: white !important; /* Sidebar link color */
+      text-decoration: none;
+      padding: 15px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+  }
+
+  .sidebar a .icon {
+      margin-right: 10px;
+  }
+
+  .sidebar.collapsed a span {
+      display: none;
+  }
+
+  /* Updated hover effect for sidebar links */
+  .sidebar a:hover {
+      background-color: #ffa500; /* Use #ffa500 for hover background */
+      border-radius: 8px;
+      padding: 12px 15px;
+      color: white !important;
+      box-shadow: 0 0 10px #ffa500; /* Orange shadow */
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Main content */
+  .main-content {
+      flex-grow: 1;
+      margin-left: 250px; /* Default margin when sidebar is expanded */
+      padding: 20px;
+      transition: margin-left 0.3s ease;
+      background-color: #191919; /* Set the background for the main content */
+      color: white; /* Text color */
+      border-left: none !important; /* Ensure no left border */
+  }
+
+  .main-content.collapsed {
+      margin-left: 0; /* No margin when sidebar is collapsed */
+      border-left: none; /* No border even when collapsed */
+  }
+
+  /* Navbar */
+  .navbar {
+      background-color: #191919 !important; /* Ensure navbar matches the main content background */
+      padding: 10px 20px;
+      border-bottom: none; /* Remove any bottom borders */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: calc(100% - 250px); /* Default width */
+      position: fixed;
+      top: 0;
+      z-index: 100;
+      transition: width 0.3s ease;
+      color: white; /* Navbar text color */
+      border: none !important; /* Remove any borders */
+  }
+
+  .navbar.collapsed {
+      width: 100%; /* Full width when sidebar is collapsed */
+      border: none; /* Ensure no borders when collapsed */
+  }
+
+  .navbar.expanded {
+      width: calc(100% - 250px); /* Default width when expanded */
+      border: none; /* No border when expanded */
+  }
+
+  .navbar-collapse-btn {
+      display: flex;
+      align-items: center;
+  }
+
+  /* Sidebar collapse button */
+  .collapse-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      margin-right: 20px;
+  }
+
+  /* Hover effect for sidebar collapse button */
+  .collapse-btn svg {
+      width: 20px;
+      height: 20px;
+      color: white; /* Icon color */
+      transition: box-shadow 0.3s ease;
+  }
+
+  .collapse-btn:hover svg {
+      box-shadow: 0 0 10px #ffa500; /* Orange shadow effect */
+  }
+
+  /* User Menu */
+  .user-menu {
+      display: flex;
+      align-items: center;
+      max-width: 150px; /* Limit the max width to keep username consistent */
+      white-space: nowrap; 
+      overflow: hidden;
+      text-overflow: ellipsis; /* Add ellipsis for long usernames */
+      padding-right: 20px;
+  }
+
+  .user-menu img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+  }
+
+  .user-menu span {
+      font-size: 16px;
+      font-weight: bold;
+  }
+
+  /* Hover effect for user dropdown */
+  .user-menu button {
+      transition: box-shadow 0.3s ease;
+  }
+
+  .user-menu button:hover {
+      box-shadow: 0 0 10px #ffa500; /* Orange shadow for hover */
+  }
+
+  /* Dashboard Card Styling */
+  .dashboard-card {
+      background-color: #202020 !important; /* Ensure the card background is #202020 */
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 0px; /* Adjusted to reduce the spacing below the navbar */
+      color: white; /* Text color */
+      border: none !important; /* Ensure no borders on cards */
+  }
+
+  .dashboard-card h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+  }
+
+  .dashboard-card p {
+      font-size: 16px;
+      margin-bottom: 20px;
+  }
+
+  .dashboard-card ul {
+      list-style-type: disc;
+      margin-left: 20px;
+  }
+
+  .dashboard-card li {
+      font-size: 16px;
+      margin-bottom: 10px;
+  }
+  
+  
+
+  /* Target the left section that holds the scrollable list */
+  .left-section {
+      padding-top: 1rem; /* Ensure this padding matches the right section's padding */
+      height: 100%;
+      overflow-y: auto; /* Make this section scrollable */
+  }
+
+  .bg-dark {
+      background-color: #202020 !important; /* Apply the background color */
+  }
+  
+  /* Target the first card inside the left section */
+  .left-section > .bg-dark:first-child {
+      margin-top: 0; /* Align top with the right section */
+  }
+
+  /* You may need to ensure the right section has no extra top padding */
+  .right-section {
+      padding-top: 1rem; /* Keep this consistent with the left section */
+      height: 100%;
+  }
+
+  /* If there's an issue with the top alignment, you can adjust the padding or margin of the main container as well */
+  .main-container {
+      display: flex;
+      height: 100%;
+      align-items: flex-start; /* Align the top of both sections */
+  }
+
+
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+      .main-content {
+          margin-left: 0;
+      }
+
+      .sidebar {
+          width: 80px;
+      }
+
+      .sidebar.collapsed {
+          width: 0;
+          opacity: 0;
+          visibility: hidden;
+      }
+
+      .main-content.collapsed {
+          margin-left: 0;
+      }
+  }
